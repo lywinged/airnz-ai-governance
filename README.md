@@ -208,6 +208,7 @@ airnz-ai-governance/
 │   ├── CONFIGURATION_DEPLOYMENT.md
 │   ├── EXECUTION_FLOWS_EN.md
 │   └── diagrams/
+├── airnz.png                  # init MindMap
 ├── START_HERE.md              # Friendly intro
 ├── IMPLEMENTATION_COMPLETE.md # G1-G12 implementation confirmation
 └── requirements.txt
