@@ -1,5 +1,5 @@
 
-# The Risks of using Companion AI+Custom GPTs:
+# The Risks of using Companion AI + Custom GPTs:
 1) Permission & data leakage ambiguity
 * Users often confuse “I can access it” with “I can paste it into a GPT,” risking PII/sensitive ops data exposure and unclear retention/spread. This habit increases the risk that users, when using personal GPTs, may accidentally upload sensitive company content due to misoperation.
 
@@ -33,23 +33,43 @@
 
 
 # The Risks of building AI agents or Agent-flow without AI governance:
-1) Unavoidable data-side customization
+The risk is similar to above,
 
-Every company has different sources (Confluence, SharePoint, DBs, code repos, spreadsheets, work orders), each with its own cleaning rules, chunking logic, versioning, deduplication, permission inheritance, incremental updates, and traceable citation formats.
+1) Data leakage & privilege violations
+*  Employees may paste PII, PNR/booking details, internal operational data, or manual excerpts into Copilot/agents. Without data classification and pre-retrieval ABAC, you can’t guarantee “only retrieve what the user is allowed to access” or “only output what is safe to disclose.”
 
-2) Routing & policies are not “a few prompts”
+2) “Truth” questions get guessed instead of verified
+*  Flight status, disruption details, baggage tracking, work-order status, etc. must come from authoritative systems. Without Tool-RAG enforcement and hard routing rules, agents will guess from static docs or hallucinate—misleading customers and operations.
 
-You must turn “question → intent → constraints → retrieval path → rerank/tool → fallback” into a system that is observable, tunable, and regression-testable.
-This requires engineered rules, statistical signals, and even small classifiers—not one-off prompts.
+3) Unverifiable evidence → audit failure
+*  Without an Evidence Contract (doc_id, version, effective date, locator, content hash), you cannot prove which version of a policy/manual a response relied on. That makes SMS-aligned assurance, internal audit, and external audit extremely difficult.
 
-3) Reliability & security requirements
+4) Uncontrolled change & drift
+*  Model updates, prompt edits, workflow tweaks in n8n, and knowledge-base refreshes cause behavior drift. Without regression evaluation and release gating, breakages are discovered in production—classic “slow-burn” incidents.
 
-Pre-retrieval permission filtering, post-generation leakage checks, PII/sensitive-field protection, privilege escalation detection, red teaming, immutable audit logs—these are mandatory in any real enterprise.
+5) No clear boundaries → misuse in R2/R3 scenarios
+*  Assistants meant for R0/R1 quickly get used for ops/engineering decision support (R2) or even automated actions (R3). Without risk-tiering and dynamic gates, “adding one tool” can turn an assistant into a high-risk system overnight.
 
-4) Evaluation loop
+6) Tools without safety gates
+*  LangGraph/n8n makes internal API integration easy, but typically lacks: parameter validation, allowlists, rate limits, idempotency, rollback, JIT authorization, and dual control. The risk rises sharply the moment write actions (tickets/permissions/config changes) are enabled.
 
-Without a golden dataset + online quality metrics (hit rate, citation coverage, tool success rate, hallucination rate) + replay testing, the system will “work today, drift tomorrow.”
-This must be tailored to the company’s business KPIs.
+7) Low observability & weak accountability
+*  You won’t be able to answer: who asked what, what data was retrieved, which tools were called, what was sent to whom, where the costs went, and how often risky events occur. Without unified trace + audit, the system isn’t operable.
+
+8) Poor incident forensics (no replay)
+*  When a complaint or investigation happens, you can’t reproduce outputs using the same model/prompt/index/tool versions, and you can’t produce a complete evidence chain—undermining root-cause analysis.
+
+9) Fragmentation across teams (“AI shadow IT”)
+*  Different teams build their own Copilot setups, n8n flows, prompt libraries, vector stores, and tool connectors. This leads to duplication, inconsistent standards, uncontrolled costs, and a growing “shadow IT” footprint.
+
+10) Compliance becomes training, not enforcement
+*  Critical requirements become “user training” rather than system controls: purpose limitation, retention/deletion, cross-border restrictions, access/correction requests, breach handling—hard to close the loop.
+
+11) Misalignment with SMS risk management
+*  SMS expects a hazard → risk → control → assurance loop. Without a governance platform, you cannot clearly show where controls exist, whether they work, or whether residual risk remains acceptable.
+
+12) Business risk: cost is uncontrolled, ROI is unprovable
+*  Without unified metrics (quality/risk/cost) and an A/B feedback loop, leadership can’t see what creates value vs. risk—often ending in a blanket shutdown.
 
 
 # Air NZ AI Governance Platform Demo
