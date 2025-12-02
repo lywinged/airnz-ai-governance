@@ -124,6 +124,7 @@ python run_full_demo.py
   - `docs/diagrams/flow_r2_disruption_management.mmd`: R2 disruption management flow with safety case, tool gateway, and mandatory human approval.
   - `docs/diagrams/flow_r3_maintenance_automation.md` / `.mmd`: R3 maintenance automation with dual approval and rollback path.
   - `docs/EXECUTION_FLOWS_EN.md`: English overview linking the flows across agents and governance controls.
+  - `docs/EXECUTION_FLOWS_CN.md`: 中文版执行流程概览，对应 EN 版的图文说明。
 
 ## Architecture Overview
 
