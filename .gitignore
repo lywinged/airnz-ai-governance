@@ -1,0 +1,23 @@
+# Environment and secrets
+.env
+.env.*
+
+# Python cache/virtualenv
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Databases and local data
+*.db
+*.sqlite
+
+# OS/files
+.DS_Store
+
+# Reports/outputs
+*.log
+*.tmp
+*.svg
+*.png
+
