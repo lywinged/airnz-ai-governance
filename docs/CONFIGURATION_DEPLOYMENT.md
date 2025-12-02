@@ -179,14 +179,14 @@ response = llm_service.generate(
     template_id="oscar_chatbot",
     template_version="1.0",
     variables={"query": "...", "evidence": "..."},
-    model="gpt-3.5-turbo"
+    model="gpt-3.5-turbo-0125"
 )
 ```
 
 **Supported Models**:
-- gpt-3.5-turbo (fast, cheap - recommended for R0)
-- gpt-4-turbo (balanced)
-- gpt-4 (highest quality)
+- gpt-3.5-turbo-0125 (fast, cheap - recommended for R0)
+- gpt-4o-mini (balanced)
+- gpt-4o (highest quality)
 
 ### Flight API Integration
 
@@ -526,7 +526,7 @@ cp airnz_backup_20241202_143000.db airnz.db
    - Monitor slow queries
 
 2. **LLM**:
-   - Use gpt-3.5-turbo for R0 (faster, cheaper)
+   - Use gpt-3.5-turbo-0125 for R0 (faster, cheaper)
    - Cache frequent queries
    - Implement rate limiting
 

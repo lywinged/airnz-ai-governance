@@ -71,9 +71,9 @@ class LLMService:
 
     # Pricing per 1M tokens (as of 2024)
     PRICING = {
-        "gpt-4": {"input": 30.0, "output": 60.0},
-        "gpt-4-turbo": {"input": 10.0, "output": 30.0},
-        "gpt-3.5-turbo": {"input": 0.5, "output": 1.5},
+        "gpt-4o": {"input": 5.0, "output": 15.0},
+        "gpt-4o-mini": {"input": 0.15, "output": 0.60},
+        "gpt-3.5-turbo-0125": {"input": 0.5, "output": 1.5},
     }
 
     def __init__(self, api_key: Optional[str] = None):
@@ -197,7 +197,7 @@ Provide helpful technical assistance.
         template_id: str,
         template_version: str,
         variables: Dict,
-        model: str = "gpt-3.5-turbo",
+        model: str = "gpt-4o-mini",
         temperature: float = 0.7,
         max_tokens: int = 1000
     ) -> LLMResponse:
@@ -286,7 +286,7 @@ Provide helpful technical assistance.
             total_tokens = completion.usage.total_tokens
 
             # Calculate cost
-            pricing = self.PRICING.get(model, self.PRICING["gpt-3.5-turbo"])
+            pricing = self.PRICING.get(model, self.PRICING["gpt-4o-mini"])
             cost_usd = (
                 (prompt_tokens / 1_000_000) * pricing["input"] +
                 (completion_tokens / 1_000_000) * pricing["output"]
@@ -348,7 +348,7 @@ Source: Checked Baggage Allowance Policy Version 3.2, Effective 2024-01-01, Sect
         total_tokens = prompt_tokens + completion_tokens
 
         # Mock cost (minimal)
-        pricing = self.PRICING.get(model, self.PRICING["gpt-3.5-turbo"])
+        pricing = self.PRICING.get(model, self.PRICING["gpt-4o-mini"])
         cost_usd = (total_tokens / 1_000_000) * (pricing["input"] + pricing["output"]) / 2
 
         return {

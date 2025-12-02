@@ -85,7 +85,7 @@ class CodeAssistantAgent:
             user_id=user_id,
             query=query,
             risk_tier=self.risk_tier.value,
-            model_version="gpt-3.5-turbo",  # Faster/cheaper for R0
+            model_version="gpt-3.5-turbo-0125",  # Faster/cheaper for R0
             prompt_version="code_assistant_v1.0",
             retrieval_index_version="n/a",
             policy_version="1.0.0"
@@ -125,7 +125,7 @@ class CodeAssistantAgent:
                     "query": query,
                     "context": context or "No additional context provided"
                 },
-                model="gpt-3.5-turbo",  # Fast and cheap for R0
+                model="gpt-3.5-turbo-0125",  # Fast and cheap for R0
                 temperature=0.7,
                 max_tokens=1500
             )
