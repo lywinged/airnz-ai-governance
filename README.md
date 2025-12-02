@@ -112,6 +112,21 @@ python run_full_demo.py
 - **G11: Reliability Engineering** — SLOs, graceful degradation, circuit breakers, kill switches.
 - **G12: Governance as a Product** — policy-as-code, audit dashboards, approval workflows, data-source health monitoring.
 
+## G1–G12 → Code Mapping
+
+- **G1 – Safety Cases**: `src/governance/safety_case.py` (`SafetyCase`, `SafetyCaseRegistry` for R0–R3).
+- **G2 – Risk Tiering**: `src/core/policy_engine.py` (`RiskTier`, `PolicyEngine`, tier gates R0–R3).
+- **G3 – Evidence Contract**: `src/core/evidence_contract.py` (`Citation`, `EvidenceContractEnforcer`).
+- **G4 – Permission Layers**: `src/core/access_control.py` (`AccessControlEngine`, `BusinessDomain`, RBAC/ABAC).
+- **G5 – Tool Safety Gates**: `src/core/tool_gateway.py` (`ToolGateway`, read/write isolation, rate limiting, rollback).
+- **G6 – Versioning**: `src/core/llm_service.py` (model & prompt templates) + `policy_engine.py` (policy versions).
+- **G7 – Observability & Replay**: `src/core/audit_system.py` (`AuditSystem`, traces + events + replay).
+- **G8 – Evaluation System**: `src/governance/evaluation_system.py` (golden sets, regression, red team).
+- **G9 – Privacy Control**: `src/core/privacy_control.py` (`PrivacyController`, NZ Privacy Act alignment).
+- **G10 – Domain Isolation**: `src/core/access_control.py` (domain-scoped access via `BusinessDomain` etc.).
+- **G11 – Reliability Engineering**: `src/governance/reliability.py` (`ReliabilityEngineer`, circuit breakers, kill switches).
+- **G12 – Governance as Product**: `src/governance/dashboard.py` (`GovernanceDashboard`) + `src/monitoring/slo_monitor.py` (SLOs).
+
 ## Diagrams (Mermaid)
 
 - Execution flows are in `docs/diagrams/*.md` / `*.mmd` (e.g., `flow_r1_oscar_chatbot.md`, `flow_r2_disruption_management.mmd`).
