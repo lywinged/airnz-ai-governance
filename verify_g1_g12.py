@@ -82,7 +82,7 @@ def verify_g1_g12():
             version="1.0",
             revision="1",
             title="Test Document",
-            source_system=SourceSystem.POLICIES,
+            source_system=SourceSystem.POLICY_MANAGEMENT,
             evidence_type=EvidenceType.POLICY,
             paragraph_locator="Section 1",
             excerpt="Test paragraph",

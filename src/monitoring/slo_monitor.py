@@ -410,8 +410,10 @@ class SLOMonitor:
         if not recent_measurements:
             return {
                 "period_hours": hours,
-                "status": "no_data",
-                "message": "No measurements available"
+                "overall_status": "no_data",
+                "slos": {},
+                "message": "No measurements available",
+                "generated_at": datetime.now().isoformat()
             }
 
         # Group by SLO
